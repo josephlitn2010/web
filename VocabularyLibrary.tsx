@@ -1,22 +1,44 @@
 import { useState } from 'react';
-import { VocabularyEntry, Category, addVocabulary, updateVocabulary, deleteVocabulary, addCategory, deleteMultipleVocabulary, updateMultipleMastery, updateMultipleCategory } from '@/lib/db';
-import { Button } from '@/components/ui/button';
-import { Input } from '@/components/ui/input';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { Textarea } from '@/components/ui/textarea';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
+// 修正處：從 @/lib 改為 ./ 且補上副檔名
+import { VocabularyEntry, Category, addVocabulary, updateVocabulary, deleteVocabulary, addCategory, deleteMultipleVocabulary, updateMultipleMastery, updateMultipleCategory } from './db.ts';
+// 修正處：將原本所有 @/components/ui/ 改為直接指向根目錄的檔案
+import { Button } from './button.tsx';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './dialog.tsx';
+
+// 修正處：因為你沒有單獨的 input.tsx 等檔案，我們先用最保險的方法：
+// 直接定義簡單的 HTML 替代組件，避免 Build 失敗
+const Input = (props: any) => <input {...props} className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${props.className}`} />;
+const Textarea = (props: any) => <textarea {...props} className={`flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${props.className}`} />;
+
+// 這些組件如果沒有檔案，建議先用簡單的 div/span 代替，確保能跑起來
+const Card = ({ children, className }: any) => <div className={`rounded-lg border bg-card text-card-foreground shadow-sm ${className}`}>{children}</div>;
+const CardContent = ({ children, className }: any) => <div className={`p-6 pt-0 ${className}`}>{children}</div>;
+const CardHeader = ({ children, className }: any) => <div className={`flex flex-col space-y-1.5 p-6 ${className}`}>{children}</div>;
+const CardTitle = ({ children, className }: any) => <h3 className={`text-2xl font-semibold leading-none tracking-tight ${className}`}>{children}</h3>;
+const Badge = ({ children, className, style }: any) => <span style={style} className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${className}`}>{children}</span>;
+const Checkbox = (props: any) => <input type="checkbox" {...props} className={`h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 ${props.className}`} />;
+
+// 原有的套件與工具路徑修正
 import { Trash2, Edit2, Plus, Search, Volume2, Download, Check } from 'lucide-react';
 import { toast } from 'sonner';
-import { speak, isSpeechSynthesisAvailable } from '@/lib/speech';
-import { getCategoryColor, parseBulkVocabulary } from '@/lib/utils';
-import { exportVocabularyToCSV } from '@/lib/csvExport';
-import { exportVocabularyToHTML } from '@/lib/htmlExport';
-import BulkOperationsToolbar from '@/components/BulkOperationsToolbar';
-import { Checkbox } from '@/components/ui/checkbox';
-import SearchHistoryDropdown from '@/components/SearchHistoryDropdown';
-import { addToSearchHistory } from '@/lib/searchHistory';
+import { speak, isSpeechSynthesisAvailable } from './speech.ts';
+import { getCategoryColor, parseBulkVocabulary } from './utils.ts';
+import { exportVocabularyToHTML } from './htmlExport.ts';
+import BulkOperationsToolbar from './BulkOperationsToolbar.tsx';
+import SearchHistoryDropdown from './SearchHistoryDropdown.tsx';
+import { addToSearchHistory } from './searchHistory.ts';
+
+// 修正 Select：因為 Select 邏輯複雜，我們先用原生 HTML select 確保不崩潰
+const Select = ({ children, value, onValueChange }: any) => (
+  <select value={value} onChange={(e) => onValueChange(e.target.value)} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+    {children}
+  </select>
+);
+const SelectTrigger = ({ children }: any) => <>{children}</>;
+const SelectValue = (props: any) => null; 
+const SelectContent = ({ children }: any) => <>{children}</>;
+const SelectItem = ({ value, children }: any) => <option value={value}>{children}</option>;
+
 
 interface VocabularyLibraryProps {
   vocabulary: VocabularyEntry[];
