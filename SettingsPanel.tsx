@@ -9,11 +9,10 @@ import { getSearchHistory, removeFromSearchHistory, clearSearchHistory, type Sea
 
 // 2. 修正 UI 組件路徑 (從 VocabularyLibrary 借用定義好的 Card/Input 等)
 import { Button } from './button.tsx';
-import { 
-  Card, CardContent, CardHeader, CardTitle, 
-  Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,
-  Input 
-} from './VocabularyLibrary.tsx'; 
+// 把 Dialog 拆出來，改從 dialog.tsx 引用
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './dialog.tsx';
+import { Card, CardContent, CardHeader, CardTitle, Input } from './VocabularyLibrary.tsx'; 
+
 
 // 3. 處理 AlertDialog (如果沒有檔案，我們用簡單的 HTML 代替)
 const AlertDialog = ({ children }: any) => <>{children}</>;
