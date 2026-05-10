@@ -1,21 +1,47 @@
 import { useState, useEffect } from 'react';
-import { VocabularyEntry, Category, exportAllData, importData, clearAllData, addCategory, deleteCategory } from '@/lib/db';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from '@/components/ui/dialog';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger } from '@/components/ui/alert-dialog';
+// 1. 修正邏輯路徑
+import { VocabularyEntry, Category, exportAllData, importData, clearAllData, addCategory, deleteCategory } from './db.ts';
+import { initializeSampleData, hasSampleData } from './sampleData.ts';
+import { downloadJSON, parseJSONFile } from './utils.ts';
+import { exportAllVocabularyToCSV } from './csvExport.ts';
+import { exportAllVocabularyToHTML } from './htmlExport.ts';
+import { getSearchHistory, removeFromSearchHistory, clearSearchHistory, type SearchHistoryItem } from './searchHistory.ts';
+
+// 2. 修正 UI 組件路徑 (從 VocabularyLibrary 借用定義好的 Card/Input 等)
+import { Button } from './button.tsx';
+import { 
+  Card, CardContent, CardHeader, CardTitle, 
+  Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger,
+  Input 
+} from './VocabularyLibrary.tsx'; 
+
+// 3. 處理 AlertDialog (如果沒有檔案，我們用簡單的 HTML 代替)
+const AlertDialog = ({ children }: any) => <>{children}</>;
+const AlertDialogTrigger = ({ children, asChild }: any) => <>{children}</>;
+const AlertDialogContent = ({ children }: any) => (
+  <div className="fixed inset-0 z-50 bg-black/50 flex items-center justify-center p-4">
+    <div className="bg-white rounded-lg p-6 max-w-sm w-full">{children}</div>
+  </div>
+);
+const AlertDialogHeader = ({ children }: any) => <div className="mb-4">{children}</div>;
+const AlertDialogTitle = ({ children }: any) => <h2 className="text-lg font-bold">{children}</h2>;
+const AlertDialogDescription = ({ children }: any) => <p className="text-sm text-gray-500">{children}</p>;
+const AlertDialogAction = (props: any) => <Button {...props} className={`bg-destructive text-destructive-foreground ${props.className}`} />;
+const AlertDialogCancel = (props: any) => <Button {...props} variant="outline" />;
+
+// 4. 其他剩餘組件
 import { Download, Upload, Trash2, Plus, Settings, Sparkles, Wrench, Moon, Sun, Clock, X, Droplet } from 'lucide-react';
 import { toast } from 'sonner';
-import { downloadJSON, parseJSONFile } from '@/lib/utils';
-import { initializeSampleData, hasSampleData } from '@/lib/sampleData';
-import CategoryCleanupTool from '@/components/CategoryCleanupTool';
-import { useTheme } from '@/contexts/ThemeContext';
-import { exportAllVocabularyToCSV } from '@/lib/csvExport';
-import { exportAllVocabularyToHTML } from '@/lib/htmlExport';
-import { getSearchHistory, removeFromSearchHistory, clearSearchHistory } from '@/lib/searchHistory';
-import { SearchHistoryItem } from '@/lib/searchHistory';
-import { OfflineTranslationPanel } from '@/components/OfflineTranslationPanel';
+
+// 5. 處理可能不存在的檔案 (如果 Build 報錯說找不到這些，建議先註解掉相關 HTML 區塊)
+// import CategoryCleanupTool from './CategoryCleanupTool.tsx';
+// import { OfflineTranslationPanel } from './OfflineTranslationPanel.tsx';
+
+// 6. 處理 ThemeContext (如果沒有這個檔案，我們給一個虛擬的切換邏輯)
+const useTheme = () => {
+  const [theme, setTheme] = useState('light');
+  return { theme, setTheme: (t: string) => setTheme(t) };
+};
 
 interface SettingsPanelProps {
   vocabulary: VocabularyEntry[];
