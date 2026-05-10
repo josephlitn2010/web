@@ -1,0 +1,476 @@
+@import "tailwindcss";
+
+@reference "tailwindcss";
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist+Mono:wght@400;500;600;700&display=swap');
+
+@layer base {
+  :root {
+    color-scheme: light;
+    --background: 0 0% 100%;
+    --foreground: 0 0% 3.6%;
+    --card: 0 0% 96.3%;
+    --card-foreground: 0 0% 3.6%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 3.6%;
+    --muted: 0 0% 88.9%;
+    --muted-foreground: 0 0% 39.2%;
+    --accent: 142.1 76.2% 36.3%;
+    --accent-foreground: 355.7 100% 97.3%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 89.8%;
+    --input: 0 0% 89.8%;
+    --ring: 142.1 76.2% 36.3%;
+    --radius: 0.5rem;
+    --sidebar-bg: 0 0% 96.3%;
+    --sidebar-foreground: 0 0% 3.6%;
+    --sidebar-border: 0 0% 88.9%;
+    --sidebar-ring: 142.1 76.2% 36.3%;
+  }
+
+  .dark {
+    color-scheme: dark;
+    --background: 0 0% 3.6%;
+    --foreground: 0 0% 98%;
+    --card: 0 0% 10.2%;
+    --card-foreground: 0 0% 98%;
+    --popover: 0 0% 3.6%;
+    --popover-foreground: 0 0% 98%;
+    --muted: 0 0% 14.3%;
+    --muted-foreground: 0 0% 63.9%;
+    --accent: 142.1 70.6% 45.3%;
+    --accent-foreground: 144.9 80.4% 10%;
+    --destructive: 0 62.8% 30.6%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 0 0% 14.3%;
+    --input: 0 0% 14.3%;
+    --ring: 142.1 70.6% 45.3%;
+    --sidebar-bg: 0 0% 10.2%;
+    --sidebar-foreground: 0 0% 98%;
+    --sidebar-border: 0 0% 14.3%;
+    --sidebar-ring: 142.1 70.6% 45.3%;
+  }
+}
+
+@layer base {
+  body {
+    background-color: hsl(var(--background));
+    color: hsl(var(--foreground));
+  }
+}
+
+@layer utilities {
+  .container {
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .flex {
+    display: flex;
+    min-height: 0;
+    min-width: 0;
+  }
+
+  .button {
+    outline: none;
+  }
+
+  button:focus-visible {
+    ring-width: 2px;
+    ring-color: hsl(var(--ring));
+    ring-offset-width: 2px;
+    ring-offset-color: hsl(var(--background));
+  }
+
+  .outline {
+    border: 1px solid hsl(var(--input));
+    background-color: transparent;
+  }
+}
+
+@keyframes fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes slide-in {
+  from {
+    opacity: 0;
+    transform: translateX(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.animate-fade-in {
+  animation: fade-in 0.3s ease-out;
+}
+
+.animate-slide-in {
+  animation: slide-in 0.3s ease-out;
+}
+
+/* Light Theme */
+html.light {
+  --background: 0 0% 100%;
+  --foreground: 0 0% 3.6%;
+  --card: 0 0% 96.3%;
+  --card-foreground: 0 0% 3.6%;
+  --popover: 0 0% 100%;
+  --popover-foreground: 0 0% 3.6%;
+  --muted: 0 0% 88.9%;
+  --muted-foreground: 0 0% 39.2%;
+  --accent: 142.1 76.2% 36.3%;
+  --accent-foreground: 355.7 100% 97.3%;
+  --destructive: 0 84.2% 60.2%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 89.8%;
+  --input: 0 0% 89.8%;
+  --ring: 142.1 76.2% 36.3%;
+  --sidebar-bg: 0 0% 96.3%;
+  --sidebar-foreground: 0 0% 3.6%;
+  --sidebar-border: 0 0% 88.9%;
+  --sidebar-ring: 142.1 76.2% 36.3%;
+}
+
+html.light body {
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Dark Theme */
+html.dark {
+  --background: 0 0% 3.6%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 10.2%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.6%;
+  --popover-foreground: 0 0% 98%;
+  --muted: 0 0% 14.3%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 142.1 70.6% 45.3%;
+  --accent-foreground: 144.9 80.4% 10%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.3%;
+  --input: 0 0% 14.3%;
+  --ring: 142.1 70.6% 45.3%;
+  --sidebar-bg: 0 0% 10.2%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-border: 0 0% 14.3%;
+  --sidebar-ring: 142.1 70.6% 45.3%;
+}
+
+html.dark body {
+  background: hsl(var(--background)) !important;
+  color: hsl(var(--foreground)) !important;
+}
+
+/* Liquid Glass Theme */
+html.liquid-glass {
+  --background: 0 0% 3.6%;
+  --foreground: 0 0% 98%;
+  --card: 0 0% 10.2%;
+  --card-foreground: 0 0% 98%;
+  --popover: 0 0% 3.6%;
+  --popover-foreground: 0 0% 98%;
+  --muted: 0 0% 14.3%;
+  --muted-foreground: 0 0% 63.9%;
+  --accent: 142.1 70.6% 45.3%;
+  --accent-foreground: 144.9 80.4% 10%;
+  --destructive: 0 62.8% 30.6%;
+  --destructive-foreground: 0 0% 98%;
+  --border: 0 0% 14.3%;
+  --input: 0 0% 14.3%;
+  --ring: 142.1 70.6% 45.3%;
+  --sidebar-bg: 0 0% 10.2%;
+  --sidebar-foreground: 0 0% 98%;
+  --sidebar-border: 0 0% 14.3%;
+  --sidebar-ring: 142.1 70.6% 45.3%;
+}
+
+html.liquid-glass body,
+html.liquid-glass #root,
+html.liquid-glass .app {
+  background: linear-gradient(135deg, 
+    #1a0f2e 0%, 
+    #2a1b4a 30%, 
+    #1e3a5f 60%, 
+    #0f2b4d 100%) !important;
+  background-attachment: fixed !important;
+  min-height: 100vh;
+  position: relative;
+}
+
+html.liquid-glass body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="100" height="100"><filter id="noise"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" result="noise" seed="2"/></filter><rect width="100" height="100" fill="%23ffffff" opacity="0.75" filter="url(%23noise)"/></svg>');
+  opacity: 0.08;
+  pointer-events: none;
+  z-index: 1;
+}
+
+html.liquid-glass > * {
+  position: relative;
+  z-index: 2;
+}
+
+/* === Liquid Glass 主樣式 - 提高優先權 === */
+html.liquid-glass .card,
+html.liquid-glass [data-slot="card"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(36px) saturate(180%) contrast(110%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) contrast(110%) !important;
+  
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 28px !important;
+  
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.4) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important,
+    inset 0 -20px 25px -10px rgba(0, 0, 0, 0.55) !important;
+  
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+/* Hover 效果 */
+html.liquid-glass .card:hover,
+html.liquid-glass [data-slot="card"]:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  transform: translateY(-3px) scale(1.01) !important;
+  box-shadow: 
+    0 20px 50px -10px rgba(0, 0, 0, 0.45) !important;
+}
+
+/* 噪點層 - 加強一點 */
+html.liquid-glass .card::before,
+html.liquid-glass [data-slot="card"]::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" result="t"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.85"/></svg>');
+  opacity: 0.085;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+html.liquid-glass .glass {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(36px) saturate(180%) contrast(110%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) contrast(110%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 28px !important;
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.4) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important,
+    inset 0 -20px 25px -10px rgba(0, 0, 0, 0.55) !important;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.35s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html.liquid-glass .glass::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120"><filter id="n"><feTurbulence type="fractalNoise" baseFrequency="0.008" numOctaves="4" result="t"/></filter><rect width="120" height="120" filter="url(%23n)" opacity="0.85"/></svg>');
+  opacity: 0.085;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+html.liquid-glass button:not(:disabled),
+html.liquid-glass [role="button"]:not([aria-disabled="true"]) {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(200%) contrast(110%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) contrast(110%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 12px !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important,
+    inset 0 -8px 12px -4px rgba(0, 0, 0, 0.3) !important,
+    0 8px 24px rgba(0, 0, 0, 0.2) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html.liquid-glass button:hover:not(:disabled),
+html.liquid-glass [role="button"]:hover:not([aria-disabled="true"]) {
+  background: rgba(255, 255, 255, 0.12) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.25) !important,
+    inset 0 -8px 8px -3px rgba(0, 0, 0, 0.25) !important,
+    0 8px 24px rgba(100, 180, 255, 0.25) !important;
+}
+
+html.liquid-glass input,
+html.liquid-glass textarea,
+html.liquid-glass select {
+  background: rgba(255, 255, 255, 0.06) !important;
+  backdrop-filter: blur(10px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.12) !important;
+  border-radius: 12px !important;
+  box-shadow: inset 0 2px 4px rgba(0, 0, 0, 0.1) !important;
+  color: oklch(0.92 0.01 80) !important;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html.liquid-glass input::placeholder,
+html.liquid-glass textarea::placeholder {
+  color: rgba(255, 255, 255, 0.5) !important;
+}
+
+html.liquid-glass input:focus,
+html.liquid-glass textarea:focus,
+html.liquid-glass select:focus {
+  background: rgba(255, 255, 255, 0.1) !important;
+  border-color: rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 
+    inset 0 2px 4px rgba(0, 0, 0, 0.1) !important,
+    0 0 20px rgba(100, 180, 255, 0.2) !important;
+  outline: none !important;
+}
+
+
+/* Liquid Glass Dialog Overlay - 強烈模糊背景效果 */
+html.liquid-glass [data-slot="dialog-overlay"] {
+  background: rgba(0, 0, 0, 0.5) !important;
+  backdrop-filter: blur(20px) saturate(0.8) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(0.8) !important;
+}
+
+/* Liquid Glass Dialog Content - 玻璃卡片效果 */
+html.liquid-glass [data-slot="dialog-content"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(36px) saturate(180%) contrast(110%) !important;
+  -webkit-backdrop-filter: blur(36px) saturate(180%) contrast(110%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  border-radius: 28px !important;
+  box-shadow: 
+    0 10px 40px -10px rgba(0, 0, 0, 0.4) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important,
+    inset 0 -20px 25px -10px rgba(0, 0, 0, 0.55) !important;
+}
+
+
+/* === 統一的 Flashcard 翻轉動畫 === */
+@keyframes flashcard-flip {
+  0% {
+    transform: rotateY(0deg);
+  }
+  100% {
+    transform: rotateY(180deg);
+  }
+}
+
+.flashcard-container {
+  perspective: 1000px;
+}
+
+.flashcard-inner {
+  transition: transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-style: preserve-3d;
+}
+
+.flashcard-inner.flipped {
+  transform: rotateY(180deg);
+}
+
+.flashcard-front,
+.flashcard-back {
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+}
+
+.flashcard-back {
+  transform: rotateY(180deg);
+}
+
+/* === Liquid Glass Select Content 模糊效果 === */
+html.liquid-glass [data-slot="select-content"] {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(180%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(180%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 
+    0 8px 32px rgba(0, 0, 0, 0.3) !important,
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important;
+}
+
+html.liquid-glass [data-slot="select-item"] {
+  transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+}
+
+html.liquid-glass [data-slot="select-item"]:hover {
+  background: rgba(255, 255, 255, 0.15) !important;
+}
+
+html.liquid-glass [data-slot="select-item"][data-state="checked"] {
+  background: rgba(255, 255, 255, 0.2) !important;
+}
+
+
+/* === Light Mode Import Data 按鈕 - 確保字體顏色可見 === */
+html.light .import-data-btn {
+  color: hsl(var(--foreground)) !important;
+}
+
+/* === Glass Mode Import Data 按鈕 - 強化 Glass 效果 === */
+html.liquid-glass .import-data-btn {
+  background: rgba(255, 255, 255, 0.12) !important;
+  backdrop-filter: blur(20px) saturate(200%) contrast(110%) !important;
+  -webkit-backdrop-filter: blur(20px) saturate(200%) contrast(110%) !important;
+  border: 1px solid rgba(255, 255, 255, 0.25) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.3) !important,
+    inset 0 -8px 12px -4px rgba(0, 0, 0, 0.3) !important,
+    0 8px 24px rgba(0, 0, 0, 0.2) !important;
+}
+
+html.liquid-glass .import-data-btn:hover {
+  background: rgba(255, 255, 255, 0.16) !important;
+  border-color: rgba(255, 255, 255, 0.3) !important;
+  box-shadow: 
+    inset 0 1px 0 rgba(255, 255, 255, 0.35) !important,
+    inset 0 -8px 12px -4px rgba(0, 0, 0, 0.35) !important,
+    0 12px 32px rgba(100, 180, 255, 0.3) !important;
+}
+
+
+/* === Light Mode DialogOverlay - 模糊效果 === */
+html.light [data-slot="dialog-overlay"] {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
+
+/* === Dark Mode DialogOverlay - 模糊效果 === */
+html.dark [data-slot="dialog-overlay"] {
+  background: rgba(0, 0, 0, 0.3) !important;
+  backdrop-filter: blur(12px) !important;
+  -webkit-backdrop-filter: blur(12px) !important;
+}
