@@ -221,4 +221,6 @@ export function getModelInfo(modelKey: keyof typeof MODELS): ModelInfo {
   return MODELS[modelKey];
 }
 
-export { MODELS };
+// 將內部的 MODEL_CONFIGS 重新命名為 MODELS 匯出，這樣 Context 就能抓到它了
+export { MODEL_CONFIGS as MODELS };
+
