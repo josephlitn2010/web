@@ -1,13 +1,13 @@
-import { useState, useEffect } from 'react';
-import { VocabularyEntry, Category, updateVocabulary, updateMastery, addStudySession } from '@/lib/db';
-import { Button } from './button.tsx';
-import { Card, CardContent } from './card.tsx';
-import { Volume2, RotateCw, ChevronLeft, ChevronRight, Settings, Trophy } from 'lucide-react';
-import { toast } from 'sonner';
+// 1. 檢查這幾行，確保副檔名是 .ts (通常邏輯檔不帶 x)
+import { addToWrongWords } from './wrongWords.ts'; // <--- 檢查這裡！
 import { speak, isSpeechSynthesisAvailable } from './speech.ts';
-import { getSpacedRepetitionWords, shuffleArray } from './utils.ts';
-import { addWrongWord } from './wrongWords.tsx';
-import StudyModeConfig, { StudyConfig } from './StudyModeConfig';
+import { getProgressStats } from './utils.ts';
+import { type VocabularyEntry, updateVocabularyMastery } from './db.ts';
+
+// 2. 檢查 UI 組件，確保副檔名是 .tsx (組件檔帶 x)
+import { Button } from './button.tsx';
+import { Card, CardContent, CardHeader, CardTitle } from './VocabularyLibrary.tsx'; 
+// (註：如果你的 Card 是定義在 VocabularyLibrary.tsx 裡的話)
 
 interface FlashcardModeProps {
   vocabulary: VocabularyEntry[];
