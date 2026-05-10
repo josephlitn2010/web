@@ -10,7 +10,6 @@ import {
 import { Card, CardContent, CardHeader, CardTitle } from './VocabularyLibrary.tsx'; 
 import { Button } from './button.tsx';
 import { Calendar, TrendingUp, Award, Clock } from 'lucide-react';
-';
 
 interface ProgressDashboardProps {
   vocabulary: VocabularyEntry[];
