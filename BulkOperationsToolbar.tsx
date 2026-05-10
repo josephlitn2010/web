@@ -1,10 +1,12 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
-import { AlertDialog, AlertDialogAction, AlertDialogCancel, AlertDialogContent, AlertDialogDescription, AlertDialogFooter, AlertDialogHeader, AlertDialogTitle } from '@/components/ui/alert-dialog';
-import { Trash2, Tag, FolderOpen, X } from 'lucide-react';
-import { toast } from 'sonner';
-import { Category } from '@/lib/db';
+import React from 'react';
+// 修正處：直接從根目錄引用 button.tsx
+import { Button } from './button.tsx';
+// 修正處：如果這裡有用到 Select 或 Card，請從 VocabularyLibrary 借用
+import { 
+  Select, SelectContent, SelectItem, SelectTrigger, SelectValue 
+} from './VocabularyLibrary.tsx';
+import { Trash2, Check, X, FolderInput, GraduationCap } from 'lucide-react';
+
 
 interface BulkOperationsToolbarProps {
   selectedCount: number;
