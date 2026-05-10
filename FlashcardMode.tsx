@@ -4,7 +4,7 @@ import { Button } from './button.tsx';
 import { Card, CardContent } from './card.tsx';
 import { Volume2, RotateCw, ChevronLeft, ChevronRight, Settings, Trophy } from 'lucide-react';
 import { toast } from 'sonner';
-import { speak, isSpeechSynthesisAvailable } from './speech.tsx';
+import { speak, isSpeechSynthesisAvailable } from './speech.ts';
 import { getSpacedRepetitionWords, shuffleArray } from './utils.tsx';
 import { addWrongWord } from './wrongWords.tsx';
 import StudyModeConfig, { StudyConfig } from './StudyModeConfig';
