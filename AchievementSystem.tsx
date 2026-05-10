@@ -1,8 +1,10 @@
-import { useState, useEffect } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Badge } from '@/components/ui/badge';
-import { Trophy, Flame, BookOpen, Target, Zap, Award, Star, Crown, Sparkles, Rocket } from 'lucide-react';
-import { Progress } from '@/components/ui/progress';
+import React from 'react';
+import { Award, Star, Zap, Target, Flame, Trophy } from 'lucide-react';
+// 修正處：從我們已經寫好 Card 定義的 VocabularyLibrary 借用
+import { Card, CardContent, CardHeader, CardTitle } from './VocabularyLibrary.tsx';
+
+// 如果下方有引用 Badge，也可以從 VocabularyLibrary 借用
+// import { Badge } from './VocabularyLibrary.tsx';
 
 interface Achievement {
   id: string;
