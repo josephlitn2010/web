@@ -1,10 +1,16 @@
-import { VocabularyEntry, StudySession } from '@/lib/db';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, PieChart, Pie, Cell, LineChart, Line } from 'recharts';
-import { TrendingUp, BookOpen, Zap, Target, Award, Clock, Flame } from 'lucide-react';
-import { useEffect, useState } from 'react';
-import { getWeeklySessionsData } from '@/lib/db';
-import TodayReviewPlan from '@/components/TodayReviewPlan';
+import React from 'react';
+// 修正處：路徑扁平化
+import { type VocabularyEntry } from './db.ts';
+// 修正處：圖表套件已在 package.json 補齊，路徑不變
+import { 
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, 
+  Cell, PieChart, Pie 
+} from 'recharts';
+// 修正處：UI 組件使用我們在根目錄建立的或自定義的
+import { Card, CardContent, CardHeader, CardTitle } from './VocabularyLibrary.tsx'; 
+import { Button } from './button.tsx';
+import { Calendar, TrendingUp, Award, Clock } from 'lucide-react';
+';
 
 interface ProgressDashboardProps {
   vocabulary: VocabularyEntry[];
