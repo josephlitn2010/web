@@ -25,8 +25,7 @@ import { speak, isSpeechSynthesisAvailable } from './speech.ts';
 import { getCategoryColor, parseBulkVocabulary } from './utils.ts';
 import { exportVocabularyToHTML } from './htmlExport.ts';
 import BulkOperationsToolbar from './BulkOperationsToolbar.tsx';
-import SearchHistoryDropdown from './SearchHistoryDropdown.tsx';
-import { addToSearchHistory } from './searchHistory.ts';
+import { addTosearchHistory } from './searchHistory.ts';
 
 // 修正 Select：因為 Select 邏輯複雜，我們先用原生 HTML select 確保不崩潰
 const Select = ({ children, value, onValueChange }: any) => (
