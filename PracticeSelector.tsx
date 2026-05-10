@@ -1,5 +1,12 @@
-import { Card, CardContent } from '@/components/ui/card';
-import { Zap, Headphones, PenTool, Brain } from 'lucide-react';
+import React from 'react';
+// 1. 修正路徑：指向根目錄
+import { BookOpen, Zap, Headphones, PenTool, GraduationCap } from 'lucide-react';
+// 2. 修正 UI 組件：從 VocabularyLibrary 借用 Card 定義，或直接從 button 引用
+import { Card, CardContent, CardHeader, CardTitle } from './VocabularyLibrary.tsx';
+import { Button } from './button.tsx';
+
+// 如果你的 PracticeSelector 還有其他 import，請確保全部改成 ./ 開頭
+
 
 interface PracticeSelectorProps {
   onSelectPractice: (mode: 'flashcard' | 'listening' | 'dictation' | 'quiz') => void;
