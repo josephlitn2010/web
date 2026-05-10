@@ -27,14 +27,6 @@ const CardTitle = ({ children, className }: any) => <h3 className={`text-2xl fon
 const Badge = ({ children, className, style }: any) => <span style={style} className={`inline-flex items-center rounded-full border px-2.5 py-0.5 text-xs font-semibold transition-colors focus:outline-none focus:ring-2 focus:ring-ring focus:ring-offset-2 ${className}`}>{children}</span>;
 const Checkbox = (props: any) => <input type="checkbox" {...props} className={`h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 ${props.className}`} />;
 
-// 原有的套件與工具路徑修正
-import { Trash2, Edit2, Plus, Search, Volume2, Download, Check } from 'lucide-react';
-import { toast } from 'sonner';
-import { speak, isSpeechSynthesisAvailable } from './speech.ts';
-import { getCategoryColor, parseBulkVocabulary } from './utils.ts';
-import { exportVocabularyToHTML } from './htmlExport.ts';
-import BulkOperationsToolbar from './BulkOperationsToolbar.tsx';
-import { addTosearchHistory } from './searchHistory.ts';
 
 // 修正 Select：因為 Select 邏輯複雜，我們先用原生 HTML select 確保不崩潰
 const Select = ({ children, value, onValueChange }: any) => (
