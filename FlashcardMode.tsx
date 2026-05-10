@@ -1,12 +1,12 @@
 import { useState, useEffect } from 'react';
 import { VocabularyEntry, Category, updateVocabulary, updateMastery, addStudySession } from '@/lib/db';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
+import { Button } from './button.tsx';
+import { Card, CardContent } from './card.tsx';
 import { Volume2, RotateCw, ChevronLeft, ChevronRight, Settings, Trophy } from 'lucide-react';
 import { toast } from 'sonner';
-import { speak, isSpeechSynthesisAvailable } from '@/lib/speech';
-import { getSpacedRepetitionWords, shuffleArray } from '@/lib/utils';
-import { addWrongWord } from '@/lib/wrongWords';
+import { speak, isSpeechSynthesisAvailable } from './speech.tsx';
+import { getSpacedRepetitionWords, shuffleArray } from './utils.tsx';
+import { addWrongWord } from './wrongWords.tsx';
 import StudyModeConfig, { StudyConfig } from './StudyModeConfig';
 
 interface FlashcardModeProps {
