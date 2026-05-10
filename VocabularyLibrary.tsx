@@ -16,7 +16,8 @@ export const SelectItem = ({ value, children }: any) => <option value={value}>{c
 
 // 修正處：因為你沒有單獨的 input.tsx 等檔案，我們先用最保險的方法：
 // 直接定義簡單的 HTML 替代組件，避免 Build 失敗
-const Input = (props: any) => <input {...props} className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${props.className}`} />;
+export const Input = (props: any) => <input {...props} className={`flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring ${props.className}`} />;
+
 const Textarea = (props: any) => <textarea {...props} className={`flex min-h-[80px] w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 ${props.className}`} />;
 
 // 這些組件如果沒有檔案，建議先用簡單的 div/span 代替，確保能跑起來
