@@ -1,14 +1,14 @@
-import { useState, useRef } from 'react';
-import { VocabularyEntry, Category, updateVocabulary, updateMastery } from '@/lib/db';
-import { Button } from '@/components/ui/button';
-import { Card, CardContent } from '@/components/ui/card';
-import { Input } from '@/components/ui/input';
-import { Volume2, RotateCw, Loader2, Mic, ChevronRight, Trophy } from 'lucide-react';
-import { toast } from 'sonner';
-import { speak, isSpeechSynthesisAvailable, startDictation, isSpeechRecognitionAvailable } from '@/lib/speech';
-import { getSpacedRepetitionWords } from '@/lib/utils';
-import { addWrongWord } from '@/lib/wrongWords';
-import StudyModeConfig, { StudyConfig } from './StudyModeConfig';
+// 1. 檢查這幾行，確保副檔名是 .ts (通常邏輯檔不帶 x)
+import { addToWrongWords } from './wrongWords.ts'; // <--- 檢查這裡！
+import { speak, isSpeechSynthesisAvailable } from './speech.ts';
+import { getProgressStats } from './utils.ts';
+import { type VocabularyEntry, updateVocabularyMastery } from './db.ts';
+
+// 2. 檢查 UI 組件，確保副檔名是 .tsx (組件檔帶 x)
+import { Button } from './button.tsx';
+import { Card, CardContent, CardHeader, CardTitle } from './VocabularyLibrary.tsx'; 
+// (註：如果你的 Card 是定義在 VocabularyLibrary.tsx 裡的話)
+
 
 interface DictationModeProps {
   vocabulary: VocabularyEntry[];
