@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="en">
+
+  <head>
+    <meta charset="UTF-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1.0, maximum-scale=1, viewport-fit=cover" />
+    <meta name="theme-color" content="#faf8f3" />
+    <meta name="description" content="Premium Vocabulary Learning PWA - Learn languages with elegant flashcards, listening practice, and offline support." />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="VocabLearn" />
+    <!-- Force no-cache for index.html to always check for updates -->
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <link rel="apple-touch-icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 180 180'><rect fill='%235a9e7a' width='180' height='180'/><text x='90' y='90' font-size='80' font-weight='bold' fill='white' text-anchor='middle' dominant-baseline='middle' font-family='serif'>V</text></svg>" />
+    <link rel="manifest" href="/manifest.json" />
+    <title>VocabLearn - Premium Vocabulary Learning</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script
+      defer
+      src="%VITE_ANALYTICS_ENDPOINT%/umami"
+      data-website-id="%VITE_ANALYTICS_WEBSITE_ID%"></script>
+    <script>
+      // Advanced Service Worker registration with update detection
+      if ('serviceWorker' in navigator) {
+        // Register the service worker
+        navigator.serviceWorker.register('/sw.js', { scope: '/' })
+          .then((registration) => {
+            console.log('[App] Service Worker registered successfully');
+            
+            // Check for updates every 30 seconds
+            setInterval(() => {
+              registration.update().catch((err) => {
+                console.warn('[App] Update check failed:', err);
+              });
+            }, 30000);
+            
+            // Listen for controller change (new SW activated)
+            let refreshing = false;
+            navigator.serviceWorker.addEventListener('controllerchange', () => {
+              if (!refreshing) {
+                refreshing = true;
+                console.log('[App] New Service Worker activated, reloading page');
+                window.location.reload();
+              }
+            });
+            
+            // Listen for messages from Service Worker
+            navigator.serviceWorker.addEventListener('message', (event) => {
+              if (event.data && event.data.type === 'SW_INSTALLED') {
+                console.log('[App] New Service Worker installed, version:', event.data.version);
+                // Dispatch custom event for app to listen
+                window.dispatchEvent(new CustomEvent('sw-update-available', {
+                  detail: { version: event.data.version }
+                }));
+              }
+            });
+          })
+          .catch((err) => {
+            console.warn('[App] Service Worker registration failed:', err);
+          });
+      }
+    </script>
+  </body>
+
+</html>
