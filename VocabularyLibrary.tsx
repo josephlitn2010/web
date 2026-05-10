@@ -28,18 +28,6 @@ const Badge = ({ children, className, style }: any) => <span style={style} class
 const Checkbox = (props: any) => <input type="checkbox" {...props} className={`h-4 w-4 rounded border-gray-300 text-indigo-600 focus:ring-indigo-600 ${props.className}`} />;
 
 
-// 修正 Select：因為 Select 邏輯複雜，我們先用原生 HTML select 確保不崩潰
-const Select = ({ children, value, onValueChange }: any) => (
-  <select value={value} onChange={(e) => onValueChange(e.target.value)} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
-    {children}
-  </select>
-);
-const SelectTrigger = ({ children }: any) => <>{children}</>;
-const SelectValue = (props: any) => null; 
-const SelectContent = ({ children }: any) => <>{children}</>;
-const SelectItem = ({ value, children }: any) => <option value={value}>{children}</option>;
-
-
 interface VocabularyLibraryProps {
   vocabulary: VocabularyEntry[];
   categories: Category[];
