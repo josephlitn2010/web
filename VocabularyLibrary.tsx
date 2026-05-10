@@ -4,6 +4,15 @@ import { VocabularyEntry, Category, addVocabulary, updateVocabulary, deleteVocab
 // 修正處：將原本所有 @/components/ui/ 改為直接指向根目錄的檔案
 import { Button } from './button.tsx';
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from './dialog.tsx';
+export const Select = ({ children, value, onValueChange }: any) => (
+  <select value={value} onChange={(e) => onValueChange(e.target.value)} className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+    {children}
+  </select>
+);
+export const SelectTrigger = ({ children }: any) => <>{children}</>;
+export const SelectValue = (props: any) => null; 
+export const SelectContent = ({ children }: any) => <>{children}</>;
+export const SelectItem = ({ value, children }: any) => <option value={value}>{children}</option>;
 
 // 修正處：因為你沒有單獨的 input.tsx 等檔案，我們先用最保險的方法：
 // 直接定義簡單的 HTML 替代組件，避免 Build 失敗
